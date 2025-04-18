@@ -1,9 +1,23 @@
-import NewsList from "@/components/news_card";
+import NewsList from "@/components/newsList";
+import { playFair } from "./fonts";
+import TradingViewMini from "@/components/tradingViewMini";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-			<NewsList/>
-    </div>
-  );
+	const data = ["NASDAQ", "DJI", "SPX500", "XAUUSD", "US10Y"];
+
+	return (
+		<div className="flex-col mx-36">
+			<h1 className={`${playFair.className} flex justify-center p-4 text-6xl`}>Stock Pointer News</h1>
+			<div className="flex py-8">
+				<div className="w-2/3">
+					<NewsList />
+				</div>
+				<div className="flex-col w-1/3 h-36 space-y-4">
+					{data.map((sym) => 
+						<TradingViewMini key={sym} symbol={sym} />
+					)}
+				</div>
+			</div>
+		</div>
+	);
 }
